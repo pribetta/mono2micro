@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-feed
+  labels:
+    app: udagram-feed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-feed
+  template:
+    metadata:
+      labels:
+        app: udagram-feed
+    spec:
+      containers:
+      - name: udagram-feed
+        image: priyankabs90/udagram-feed
+        ports:
+        - containerPort: 8100
+        env:
+        - name: POSTGRES_USERNAME
+          value: "mono2micro"
+        - name: POSTGRES_PASSWORD
+          value: "mono2micro"
+        - name: POSTGRES_HOST
+          value: "mono2micro.cnaajckeogfg.ap-south-1.rds.amazonaws.com"
+        - name: POSTGRES_DB
+          value: "mono2micro"
+        - name: AWS_BUCKET
+          value: "monolith2micro-pribs"
+        - name: AWS_REGION
+          value: "ap-south-1"
+        - name: AWS_PROFILE
+          value: "default"
+        - name: JWT_SECRET
+          value: "hello"
+        - name: URL
+          value: "http://localhost:8100"
+        - name: PORT
+          value: "8100"
+        
+          
